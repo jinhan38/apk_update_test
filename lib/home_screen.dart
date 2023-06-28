@@ -18,7 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int count = 0;
   int total = 0;
 
-  String fileName = "app-release.apk";
+  String fileName = "app-release-update.apk";
 
   String url =
       "https://docs.google.com/uc?export=download&id=1hNm3M56wpL0Dcwi6GUaQx2c7fUMaqpXH";
@@ -41,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
               setState(() {
                 downloading = true;
               });
-              String path = "$_localPath/$fileName";
+              String path = "$_localPath$fileName";
               bool exists = await File(path).exists();
               if (exists) {
                 await File(path).delete();
@@ -67,7 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           ElevatedButton(
             onPressed: () async {
-              bool exists = await File("$_localPath/$fileName").exists();
+              bool exists = await File("$_localPath$fileName").exists();
               if (!exists) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
@@ -77,7 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 return;
               }
               await const MethodChannel("android")
-                  .invokeMethod("update", "$_localPath/$fileName");
+                  .invokeMethod("update", "$_localPath$fileName");
             },
             child: const Text("업데이트"),
           ),
