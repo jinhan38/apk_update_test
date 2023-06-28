@@ -1,4 +1,3 @@
-import 'package:apk_update_test/after_screen.dart';
 import 'package:apk_update_test/home_screen.dart';
 import 'package:flutter/material.dart';
 

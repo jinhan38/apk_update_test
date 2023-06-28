@@ -34,6 +34,10 @@ class MainActivity : FlutterActivity() {
 
                         val path = call.arguments as String
 
+                        Log.d(TAG, "setupChannels: path : $path")
+                        val isFile = File(path).isFile
+                        Log.d(TAG, "setupChannels: isFile : $isFile")
+
                         executeFile(this, File(path))
 
                     }
@@ -51,7 +55,8 @@ class MainActivity : FlutterActivity() {
         try {
             val intent = Intent(Intent.ACTION_VIEW)
 
-            val uri = FileProvider.getUriForFile(context, context.applicationContext.packageName + ".provider", file)
+            val uri = FileProvider.getUriForFile(context, context.applicationContext.packageName + ".fileprovider", file)
+            Log.d(TAG, "executeFile: url : $uri")
             intent.setDataAndType(uri, "application/vnd.android.package-archive")
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
